@@ -1,0 +1,26 @@
+{
+  "author": "Eric Drechsel <eric@pdxhub.org> (http://eric.pdxhub.org/)",
+  "name": "jekyll2harp",
+  "description": "A commandline utility to convert Jekyll posts for use with Harp.",
+  "keywords": ["yml", "yaml", "json", "cli", "util", "jekyll", "harp"],
+  "version": "0.0.1",
+  "main": "./bin/jekyll2harp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edrex/jekyll2harp.git"
+  },
+  "bin": {
+    "jekyll2harp": "./bin/jekyll2harp"
+  },
+  "engines": {
+    "node": ">= 0.2.0"
+  },
+  "test": "echo 'error no test'; exit 1",
+  "dependencies":{
+    "commander": "2.0.0",
+    "fs-extra": "0.6.4",
+    "yaml-front-matter": "2.1.11"
+  },
+  "devDependencies": {},
+  "preferGlobal": true
+}

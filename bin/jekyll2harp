@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+var cmd = require('commander');
+var fs = require('fs');
+var fse = require("fs-extra")
+var path = require('path');
+var yamlFront = require('yaml-front-matter')
+var log = console.log
+
+function list(val) {
+  return val.split(',');
+}
+
+function normalize_dir(dir){
+  return path.normalize(dir+path.sep)
+}
+
+cmd
+  .version('0.0.1')
+  .usage('[options] <file ...>')
+  .option('-s --skip_keys <skip_keys>', 'Skip keys', list, ['layout','published','permalink'])
+  .option('-d --dest <dest>', 'Destination directory', normalize_dir)
+  .parse(process.argv);
+
+if (cmd.dest === undefined) {
+  log("Missing required argument --dest");
+  process.exit();
+}
+if (fs.existsSync(cmd.dest)) {
+  log("dest path " + cmd.dest + " exists. Please specify an unused path.");
+  process.exit();
+}
+fse.mkdirp(cmd.dest);
+
+log('dest: ' + cmd.dest);
+log('skip_keys: ' + cmd.skip_keys);
+log('args: ' + cmd.args);
+
+var data = {};
+
+function writeFile(file, content){
+  fs.writeFile(file, content, function(err) {
+      if(err) {
+          console.log(err);
+      } else {
+          console.log("Wrote " + file);
+      }
+  });
+
+}
+function process_files(paths, outdir, skip_keys){
+  var re = /((\d{4}-\d{2}-\d{2})-)?((.*)\.([a-z]{1,3}))/;
+  paths.forEach(function(p){
+    var match = re.exec(path.basename(p));
+    if (match){
+      var o = yamlFront.loadFront(p);
+      o.date = match[2];
+      var outpath = outdir + match[3];
+      var docname = match[4];
+      writeFile(outpath, o['__content'].trimLeft());
+      delete o['__content'];
+
+      skip_keys.forEach(function(key){
+        if (typeof o[key] !== "undefined"){
+          delete o[key];
+        }
+      });
+      // collect document metadata
+      data[docname] = o;
+    }
+  });
+  // write data.json
+  writeFile(outdir+"_data.json", JSON.stringify(data, null, 2));
+}
+
+process_files(cmd.args, cmd.dest, cmd.skip_keys)
