@@ -32,12 +32,6 @@ if (fs.existsSync(cmd.dest)) {
 }
 fse.mkdirp(cmd.dest);
 
-log('dest: ' + cmd.dest);
-log('skip_keys: ' + cmd.skip_keys);
-log('args: ' + cmd.args);
-
-var data = {};
-
 function writeFile(file, content){
   fs.writeFile(file, content, function(err) {
       if(err) {
@@ -46,11 +40,12 @@ function writeFile(file, content){
           console.log("Wrote " + file);
       }
   });
-
 }
+
 function process_files(paths, outdir, skip_keys){
+  var data = {};
   var re = /((\d{4}-\d{2}-\d{2})-)?((.*)\.([a-z]{1,3}))/;
-  paths.forEach(function(p){
+  paths.reverse().forEach(function(p){
     var match = re.exec(path.basename(p));
     if (match){
       var o = yamlFront.loadFront(p);

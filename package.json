@@ -3,7 +3,7 @@
   "name": "jekyll2harp",
   "description": "A commandline utility to convert Jekyll posts for use with Harp.",
   "keywords": ["yml", "yaml", "json", "cli", "util", "jekyll", "harp"],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./bin/jekyll2harp",
   "repository": {
     "type": "git",
