@@ -38,3 +38,10 @@ npm link
     -s --skip_keys <skip_keys>  Skip keys
     -d --dest <dest>            Destination directory
 ```
+
+Example:
+
+```
+cd mysite/_posts
+jekyll2harp -d ./out *.md
+```
