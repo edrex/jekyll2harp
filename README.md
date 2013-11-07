@@ -15,6 +15,15 @@ Note that this script doesn't preserve old URLs. The best approach would probabl
 npm install -g jekyll2harp
 ```
 
+Or if you want to hack on it (pull requests welcome) run it from source like so:
+
+```bash
+git clone git@github.com:edrex/jekyll2harp.git
+cd jekyll2harp
+npm install
+npm link
+```
+
 ## Usage
 
 ```
