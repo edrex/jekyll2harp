@@ -1,15 +1,13 @@
 # jekyll2harp
 
-A script to convert posts with YAML metadata (as used by Jekyll) to bare files with the metadata in data.json (Harp's format)
+A script to convert posts from Jekyll to Harp
 
-It also notices leading dates in file names and moves them to data.json.
+ - Moves YAML metadata into data.json
+ - Notices leading dates in file names and moves them to data.json
+ - Outputs to a fresh directory, never modifies existing files or folders
+ - Strips out metadata keys specified with `-s`
 
-It requires that you pass a non-existent destination directory, and does not modify any existing files/directories.
-
-
-## Note 
-
-This script doesn't try to preserve URLs. Harp doesn't add a trailing slash by default. If you have control over your web server you could manually set up redirects via `.htaccess` or similar. I decided to just go ahead and break URLs.
+Note that this script doesn't preserve old URLs. The best approach would probably be send `301 moved permanently` for all your old URLs using `.htaccess` or similar.
 
 ## Install
 
