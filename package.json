@@ -2,7 +2,15 @@
   "author": "Eric Drechsel <eric@pdxhub.org> (http://eric.pdxhub.org/)",
   "name": "jekyll2harp",
   "description": "A commandline utility to convert Jekyll posts for use with Harp.",
-  "keywords": ["yml", "yaml", "json", "cli", "util", "jekyll", "harp"],
+  "keywords": [
+    "yml",
+    "yaml",
+    "json",
+    "cli",
+    "util",
+    "jekyll",
+    "harp"
+  ],
   "version": "0.0.3",
   "main": "./lib/index.js",
   "repository": {
@@ -15,12 +23,17 @@
   "engines": {
     "node": ">= 0.2.0"
   },
-  "test": "echo 'error no test'; exit 1",
-  "dependencies":{
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "dependencies": {
     "commander": "2.0.0",
     "fs-extra": "0.6.4",
     "yaml-front-matter": "2.1.11"
   },
-  "devDependencies": {},
-  "preferGlobal": true
+  "preferGlobal": true,
+  "devDependencies": {
+    "should": "~2.1.0",
+    "mocha": "~1.14.0"
+  }
 }
