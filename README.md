@@ -2,6 +2,13 @@
 
 A script to convert posts from Jekyll to Harp
 
+## Example:
+
+```
+cd mysite/_posts
+jekyll2harp -d ./out mysite/_posts/*.md
+```
+
 ## Features
 
  - Parses YAML metadata
@@ -47,12 +54,6 @@ npm link
     -d --dest <dest>            Destination directory
 ```
 
-Example:
-
-```
-cd mysite/_posts
-jekyll2harp -d ./out *.md
-```
 
 ## TODO
 
